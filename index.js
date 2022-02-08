@@ -2,6 +2,7 @@ const inquirer = require("inquirer")
 const Intern = require("./lib/intern")
 const Engineer = require("./lib/engineer")
 const Manager = require("./lib/manager")
+const generate= require("./lib/generateHtml")
 const fs = require("fs")
 let team = []
 
@@ -30,6 +31,7 @@ function startSelect() {
             }
         });
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////
 function additionalPerson() {
     const continueData = () => {
         return inquirer.prompt([
@@ -53,7 +55,7 @@ function additionalPerson() {
         });
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////
 function generateIntern() {
     const internData = () => {
         return inquirer.prompt([
@@ -151,22 +153,17 @@ function generateManager() {
         .then((data) => {
             const manager = new Manager(data.name, data.id, data.email);
             team.push(manager);
-            console.log(team);
             additionalPerson();
         });
         
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 //writeFile
 const printFile=(team)=>{ 
     fs.writeFile("index.html",generate.generateHtml(team),(err)=>{
     })
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 //init function
 startSelect()
