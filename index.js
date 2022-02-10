@@ -6,7 +6,6 @@ const generate= require("./lib/generateHtml")
 const fs = require("fs")
 let team = []
 
-//prompts
 function startSelect() {
     const startData = () => {
         return inquirer.prompt([
@@ -31,7 +30,7 @@ function startSelect() {
             }
         });
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////
+
 function additionalPerson() {
     const continueData = () => {
         return inquirer.prompt([
@@ -55,7 +54,6 @@ function additionalPerson() {
         });
 }
 
-////////////////////////////////////////////////////////////////////////////////////////
 function generateIntern() {
     const internData = () => {
         return inquirer.prompt([
@@ -86,12 +84,11 @@ function generateIntern() {
         .then((data) => {
             const intern = new Intern(data.name, data.id, data.email, data.school);
             team.push(intern);
-            console.log(team);
             additionalPerson();
         });
         
 }
-////////////////////////////////////////////////////////////////////////////////////////////
+
 function generateEngineer() {
     const engineerData = () => {
         return inquirer.prompt([
@@ -122,12 +119,11 @@ function generateEngineer() {
         .then((data) => {
             const engineer = new Engineer(data.name, data.id, data.email, data.github);
             team.push(engineer);
-            console.log(team);
             additionalPerson();
         });
         
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
+
 function generateManager() {
     const managerData = () => {
         return inquirer.prompt([
@@ -157,13 +153,16 @@ function generateManager() {
         });
         
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
-//writeFile
+
 const printFile=(team)=>{ 
-    fs.writeFile("index.html",generate.generateHtml(team),(err)=>{
+    fs.writeFile("./dist/index.html",generate.generateHtml(team),(err)=>{
     })
 }
-//////////////////////////////////////////////////////////////////////////////////////////////
 
-//init function
 startSelect()
+
+module.exports={
+    startSelect:startSelect,
+    additionalPerson:additionalPerson,
+    printFile:printFile
+}
