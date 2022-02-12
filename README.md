@@ -1,6 +1,6 @@
 
   Video Walkthrough: https://watch.screencastify.com/v/advsBrTM0O2UsWiNupCj
-  # Team Builder
+  # Team Display
   ## Description
 
   - Motivation
